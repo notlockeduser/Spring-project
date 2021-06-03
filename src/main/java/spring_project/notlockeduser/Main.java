@@ -2,16 +2,21 @@ package spring_project.notlockeduser;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class TestSpring {
+public class Main {
     public static void main(String[] args) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
                 "applicationContext.xml"
         );
 
-        TestBean testBean = context.getBean("testBean", TestBean.class);
+        Taxi taxi = context.getBean("taxi", Taxi.class);
 
-        System.out.println("\n\nOutput\n");
-        System.out.println(testBean.getName());
+        taxi.getCars();
+
+        //taxi.setCars();
+      //  taxi.getCars();
+        //System.out.println(taxi.getCar());
+//        System.out.println(taxi.getName());
+//        System.out.println(taxi.getCost());
 
         context.close();
     }
