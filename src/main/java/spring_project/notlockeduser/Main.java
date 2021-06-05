@@ -8,15 +8,11 @@ public class Main {
                 "applicationContext.xml"
         );
 
-        Taxi taxi = context.getBean("taxi", Taxi.class);
+        User user = context.getBean("user", User.class);
 
-        taxi.getCars();
-
-        //taxi.setCars();
-      //  taxi.getCars();
-        //System.out.println(taxi.getCar());
-//        System.out.println(taxi.getName());
-//        System.out.println(taxi.getCost());
+        int choice = (int) (Math.random() * 1);
+        String taxiService = (choice == 0) ? "bolt" : "uber";
+        user.callTaxiService(taxiService);
 
         context.close();
     }
