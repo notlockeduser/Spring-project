@@ -11,7 +11,7 @@ public class Main {
         User user = context.getBean("user", User.class);
 
         int choice = (int) (Math.random() * 1);
-        String taxiService = (choice == 0) ? "bolt" : "uber";
+        String taxiService = (choice == 0) ? "Bolt" : "Uber";
         user.callTaxiService(taxiService);
 
         context.close();
