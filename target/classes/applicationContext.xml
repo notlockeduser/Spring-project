@@ -10,11 +10,21 @@
     <context:property-placeholder location="classpath:taxi.properties"/>
 
     <bean id="car1"
-          class="spring_project.notlockeduser.Car1">
+          class="spring_project.notlockeduser.Car1"
+          scope="prototype">
     </bean>
 
     <bean id="car2"
-          class="spring_project.notlockeduser.Car2">
+          class="spring_project.notlockeduser.Car2"
+          scope="prototype">
+    </bean>
+
+    <bean id="car3"
+          class="spring_project.notlockeduser.Car3"
+          init-method="init"
+          destroy-method="destroy"
+          factory-method="getCar3"
+          scope="singleton">
     </bean>
 
     <bean id="taxi"
@@ -24,7 +34,7 @@
             <list>
                 <ref bean="car1"/>
                 <ref bean="car2"/>
-                <ref bean="car2"/>
+                <ref bean="car3"/>
             </list>
         </property>
 
