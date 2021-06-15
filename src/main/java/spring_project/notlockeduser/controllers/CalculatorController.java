@@ -7,13 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class MainController {
-    @GetMapping("/home")
-    public String getCalculatorPage() {
-        return "main/home";
-    }
-
-    @GetMapping("/calculator")
+@RequestMapping("calculator")
+public class CalculatorController {
+    @GetMapping("")
     public String getCalculatorPage(Model model,
                                     @RequestParam(value = "num1", required = false) String num1,
                                     @RequestParam(value = "num2", required = false) String num2,
@@ -50,11 +46,6 @@ public class MainController {
         }
 
         model.addAttribute("message", response);
-        return "main/calculator";
-    }
-
-    @GetMapping("/about")
-    public String getAboutPage() {
-        return "main/about";
+        return "calculator/calculator";
     }
 }
