@@ -26,4 +26,9 @@ public class PersonDAO {
         System.out.println(listPeople.get(id));
         return listPeople.get(id);
     }
+
+    public void add(Person person) {
+        person.setId(ID++);
+        listPeople.add(person);
+    }
 }

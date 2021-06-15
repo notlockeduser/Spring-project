@@ -3,10 +3,9 @@ package spring_project.notlockeduser.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import spring_project.notlockeduser.DAO.PersonDAO;
+import spring_project.notlockeduser.models.Person;
 
 @Controller
 @RequestMapping("/people")
@@ -18,7 +17,7 @@ public class PeopleController {
         this.people = people;
     }
 
-    @GetMapping("/all")
+    @GetMapping("")
     public String getIndex (Model model){
         model.addAttribute("people" ,people.getIndex());
         return "people/allPeople";
@@ -28,5 +27,17 @@ public class PeopleController {
     public String getOnId (@PathVariable("id") int id, Model model){
         model.addAttribute(people.getPerson(id));
         return "people/showId";
+    }
+
+    @GetMapping("/new")
+    public String newPerson (Model model){
+        model.addAttribute("person", new Person());
+        return "people/new";
+    }
+
+    @PostMapping()
+    public String savePerson (@ModelAttribute Person person){
+        people.add(person);
+        return "redirect:/people";
     }
 }
