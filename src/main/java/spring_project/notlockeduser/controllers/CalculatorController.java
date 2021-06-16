@@ -9,11 +9,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("calculator")
 public class CalculatorController {
+//    @GetMapping("")
+//    public String getCalculatorPage(Model model) {
+//        model.addAttribute("calculator", new Calculator());
+//        return "calculator/calculator";
+//    }
+
+
     @GetMapping("")
-    public String getCalculatorPage(Model model,
-                                    @RequestParam(value = "num1", required = false) String num1,
-                                    @RequestParam(value = "num2", required = false) String num2,
-                                    @RequestParam(value = "oper", required = false) String operation) {
+    public String getCalculatorPage(@RequestParam(value = "num1", required=false) String num1,
+                                    @RequestParam(value = "num2", required=false) String num2,
+                                    @RequestParam(value = "operation", required=false) String operation,
+                                    Model model) {
 
         String response = null;
         int number1, number2;
