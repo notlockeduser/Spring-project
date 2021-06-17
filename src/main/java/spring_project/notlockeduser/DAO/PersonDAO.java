@@ -12,10 +12,10 @@ public class PersonDAO {
     List<Person> listPeople = new ArrayList<>();
 
     public PersonDAO() {
-        listPeople.add(new Person(ID++, "Bob"));
-        listPeople.add(new Person(ID++, "Tob"));
-        listPeople.add(new Person(ID++, "Billy"));
-        listPeople.add(new Person(ID++, "Ugly"));
+        listPeople.add(new Person(ID++, "Bob", "t@mail", 27));
+        listPeople.add(new Person(ID++, "Tob", "twr@mail", 23));
+        listPeople.add(new Person(ID++, "Billy","321@mail", 22));
+        listPeople.add(new Person(ID++, "Ugly", "adfa@mail", 28));
     }
 
     public List<Person> getIndex() {
@@ -34,6 +34,8 @@ public class PersonDAO {
 
     public void update(Person person, int id) {
         listPeople.get(id).setName(person.getName());
+        listPeople.get(id).setEmail(person.getEmail());
+        listPeople.get(id).setAge(person.getAge());
     }
 
     public void delete(int id) {

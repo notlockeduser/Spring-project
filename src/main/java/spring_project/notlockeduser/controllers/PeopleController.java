@@ -3,9 +3,12 @@ package spring_project.notlockeduser.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import spring_project.notlockeduser.DAO.PersonDAO;
 import spring_project.notlockeduser.models.Person;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/people")
@@ -42,14 +45,20 @@ public class PeopleController {
     }
 
     @PostMapping()
-    public String savePerson(@ModelAttribute Person person) {
+    public String savePerson(@ModelAttribute @Valid Person person,
+                             BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "people/new";
         peopleDAO.add(person);
         return "redirect:/people";
     }
 
     @PostMapping("/{id}")
-    public String updatePerson(@ModelAttribute Person person,
+    public String updatePerson(@ModelAttribute @Valid Person person,
+                               BindingResult bindingResult,
                                @PathVariable("id") int id) {
+        if (bindingResult.hasErrors())
+            return "people/edit";
         peopleDAO.update(person, id);
         return "redirect:/people";
     }

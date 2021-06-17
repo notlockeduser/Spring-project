@@ -30,19 +30,19 @@ public class CalculatorController {
             number1 = Integer.parseInt(num1);
             number2 = Integer.parseInt(num2);
             switch (operation) {
-                case "add":
+                case "+":
                     response = number1 + " + " + number2 + " = " +
                             (number1 + number2);
                     break;
-                case "sub":
+                case "-":
                     response = number1 + " - " + number2 + " = " +
                             (number1 - number2);
                     break;
-                case "div":
+                case "/":
                     response = number1 + " / " + number2 + " = " +
                             (number1 / number2);
                     break;
-                case "mul":
+                case "*":
                     response = number1 + " * " + number2 + " = " +
                             (number1 * number2);
                     break;
