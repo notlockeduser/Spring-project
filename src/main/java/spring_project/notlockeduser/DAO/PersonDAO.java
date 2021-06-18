@@ -11,7 +11,7 @@ import java.util.List;
 
 @Component
 public class PersonDAO {
-    static int ID = 0;
+    static int ID = 4;
     //List<Person> listPeople = new ArrayList<>();
 
     static String URL = "jdbc:postgresql://localhost:5432/firstDB";
@@ -31,9 +31,8 @@ public class PersonDAO {
 
     public List<Person> getIndex() {
         List<Person> people = new ArrayList<>();
-        Statement statement = null;
         try {
-            statement = connection.createStatement();
+            Statement statement = connection.createStatement();
             String SQLRequest = "SELECT * FROM person";
             ResultSet resultSet = statement.executeQuery(SQLRequest);
 
@@ -59,8 +58,18 @@ public class PersonDAO {
     }
 
     public void add(Person person) {
-//        person.setId(ID++);
-//        listPeople.add(person);
+        try {
+            Statement statement = connection.createStatement();
+            String SQLRequest = "INSERT INTO person VALUES (" +
+                    (ID++) +", '"+
+                    person.getName() + "', "+
+                    person.getAge() + ", '" +
+                    person.getEmail()+"')";
+            statement.executeUpdate(SQLRequest);
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     public void update(Person person, int id) {
